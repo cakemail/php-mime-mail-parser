@@ -12,6 +12,6 @@
         "url":"https://github.com/cakemail/php-mime-mail-parser.git"
     },
     "autoload":{
-        "classmap":["src/"]
+        "classmap":["lib/"]
     }
 }

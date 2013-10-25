@@ -1,7 +1,13 @@
 {
     "name":"google/php-mime-mail-parser",
     "description":"An application for parsing an e-mail message",
-    "author":[
+    "authors":[
+        {
+            "name":"espaciomore",
+            "email":"espaciomore@gmail.com",
+            "homepage":"http://espaciomore.com",
+            "role":"Code Artist"
+        },        
         {
             "name":"eXorus",
             "homepage":"https://github.com/eXorus/"

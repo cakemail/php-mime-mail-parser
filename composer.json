@@ -1,10 +1,14 @@
 {
-    "name":"cakemail/php-mime-mail-parser",
+    "name":"google/php-mime-mail-parser",
     "description":"An application for parsing an e-mail message",
     "author":[
         {
             "name":"eXorus",
             "homepage":"https://github.com/eXorus/"
+        },
+        {
+            "name":"google",
+            "homepage":"https://code.google.com/p/php-mime-mail-parser"
         }
     ],
     "repository":{

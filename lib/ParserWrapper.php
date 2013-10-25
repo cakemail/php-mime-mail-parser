@@ -34,13 +34,13 @@ class class ParserWrapper
     private function get_sender_name()
     {
         $name = trim(preg_replace('/(<.*>)+/', '', $this->parser->getHeader('from') )," \t\n\r\0\x0B\"");
-        return $escape( $name );
+        return $this->escape( $name );
     }  
     
     private function get_sender_email()
     {
         $email = preg_replace('/[<>]+/','',preg_replace('/^.*\\s/', '', $this->parser->getHeader('from') ));
-        return $escape( $email );
+        return $this->escape( $email );
     }  
             
     private function get_sent_date()
@@ -54,7 +54,7 @@ class class ParserWrapper
     {
         $html = $this->parser->getMessageBody('html');
         $html = $html!=='' ? $html : $this->parser->getMessageBody('text');
-        return $escape( $html );
+        return $this->escape( $html );
     }
             
 }

@@ -2,7 +2,7 @@
 
 require_once __dir__.'/MimeMailParser.class.php';
 
-class class ParserWrapper
+class ParserWrapper
 {
     protected $parser;
 

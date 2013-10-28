@@ -47,7 +47,7 @@ class ParserWrapper
     private function get_content()
     {
         $html = $this->parser->getMessageBody('html');
-        $content = $html!=='' ? $html : $this->parser->getMessageBody('text');
+        $content = ($html!=='' and $html!==false) ? $html : $this->parser->getMessageBody('text');
         return $content;
     }
             

@@ -38,13 +38,13 @@ class ParserWrapper
             
     private function get_sender_name()
     {
-        $name = trim(preg_replace('/([^\s<@]+@[^>]+)/', '', $this->headers['from'] )," \t\n\r\0\x0B\"><");
+        $name = trim(preg_replace('/([^\s<@]+@[^\s@>]+)>?$/', '', $this->headers['from'] )," \t\n\r\0\x0B\"><");
         return $name;
     }  
     
     private function get_sender_email()
     {
-        if ( (bool)preg_match('/([^\s<@]+@[^>]+)/', $this->headers['from'], $matches) ){
+        if ( (bool)preg_match('/([^\s<@]+@[^\s@>]+)>?$/', $this->headers['from'], $matches) ){
             $email = $matches[1];
         }
         $email = trim($email," \t\n\r\0\x0B\"><");

@@ -391,7 +391,7 @@ class MimeMailParser {
 	*/
 	private function _decodeHeader($input) {
 		if (is_array($input)) {
-			return	iconv_mime_decode_headers($input, 0, 'UTF-8');
+			return	iconv_mime_decode_headers(implode("\n\r",$input), 0, 'UTF-8');
 		} else {
 			return iconv_mime_decode($input, 0, 'UTF-8');
 		}

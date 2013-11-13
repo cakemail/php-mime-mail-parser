@@ -44,7 +44,7 @@ class ParserWrapper
     
     private function get_sender_email()
     {
-        if ( (bool)preg_match('/([^\s<@]+@[^\s@>]+)>?$/', $this->headers['from'], $matches) ){
+        if ( (bool)preg_match('/([^\s<@]+@[^\s@>]+)>?/', $this->headers['from'], $matches) ){
             $email = $matches[1];
         }
         $email = trim($email," \t\n\r\0\x0B\"><");

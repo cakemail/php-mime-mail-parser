@@ -38,7 +38,7 @@ class ParserWrapper
             
     private function get_sender_name()
     {
-        $name = trim(preg_replace('/([^\s<@]+@[^\s@>]+)>?$/', '', $this->headers['from'] )," \t\n\r\0\x0B\"><");
+        $name = trim(preg_replace('/([^\s<@]+@[^\s@>]+)>?/', '', $this->headers['from'] )," \t\n\r\0\x0B\"><");
         return $name;
     }  
     

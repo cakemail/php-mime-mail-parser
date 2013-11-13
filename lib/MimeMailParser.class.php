@@ -361,6 +361,9 @@ class MimeMailParser {
 	 * @param $encodingType		The encoding type from the Content-Transfer-Encoding header of the part.
 	 */
 	private function decodeContentTransfer($encodedString, $encodingType) {
+		if (is_array($encodingType)) {
+            		$encodingType = implode(' ', $encodingType);
+        	}
 		$encodingType = strtolower($encodingType);
 
 		if ($encodingType == 'base64'){
@@ -380,7 +383,7 @@ class MimeMailParser {
 	 * @param $charset			The Charset header of the part.
 	 */
 	private function decodeCharset($encodedString, $charset) {		  
-		return ($charset == 'us-ascii') ? $encodedString : iconv($charset, 'UTF-8//TRANSLIT', $encodedString);
+		return ($charset == 'us-ascii') ? $encodedString : @iconv($charset, 'UTF-8//TRANSLIT', $encodedString);
 	}
 
 

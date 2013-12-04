@@ -29,11 +29,11 @@ class ParserWrapper
         }
         $email = array(
             'header'=> $this->parser->getHeadersRaw(),
-            'from'=> $this->headers['from'],
-            'sender_name'=> $this->get_sender_name(),
+            'from'=> $this->get_imap_mime_header_decode( $this->headers['from'] ),
+            'sender_name'=> $this->get_imap_mime_header_decode( $this->get_sender_name() ),
             'sender_email'=> $this->get_sender_email(),
             'sent_date'=> $this->get_sent_date(),
-            'subject'=> $this->get_subject(),
+            'subject'=> $this->get_imap_mime_header_decode( $this->headers['subject'] ),
             'content'=> $this->get_content(),
         );
         return $email;
@@ -77,18 +77,18 @@ class ParserWrapper
         return $sent_date;
     }
 
-    private function get_subject()
+    private function get_imap_mime_header_decode( $current )
     {
-        $subject = '';
-        $texts = imap_mime_header_decode( $this->headers['subject'] );
+        $decoded_text = '';
+        $texts = imap_mime_header_decode( $current );
         foreach ($texts as $i => $decode) {
-            $subject = $subject . $decode->{'text'};
+            $decoded_text = $decoded_text . $decode->{'text'};
         }
-        if ( $subject === '') {
-            return $this->headers['subject'];   
+        if ( $decoded_text === '') {
+            return $current;   
         }
 
-        return $subject; 
+        return $decoded_text; 
     }
 
     private function get_content()

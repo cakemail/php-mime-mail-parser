@@ -33,7 +33,7 @@ class ParserWrapper
             'sender_name'=> $this->get_sender_name(),
             'sender_email'=> $this->get_sender_email(),
             'sent_date'=> $this->get_sent_date(),
-            'subject'=> $this->headers['subject'],
+            'subject'=> $this->get_subject(),
             'content'=> $this->get_content(),
         );
         return $email;
@@ -76,7 +76,21 @@ class ParserWrapper
 
         return $sent_date;
     }
-    
+
+    private function get_subject()
+    {
+        $subject = '';
+        $texts = imap_mime_header_decode( $this->headers['subject'] );
+        foreach ($texts as $i => $decode) {
+            $subject = $subject . $decode->{'text'};
+        }
+        if ( $subject === '') {
+            return $this->headers['subject'];   
+        }
+
+        return $subject; 
+    }
+
     private function get_content()
     {
         $html = $this->parser->getMessageBody('html',$embedded_img = true);
